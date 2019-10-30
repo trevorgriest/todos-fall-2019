@@ -10,11 +10,18 @@ namespace todos.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
+        private static List<string> all = new List<string>()
+        {
+            "Remodel Bathroom",
+            "Finish my laser app",
+            "Do things with kids"
+        };
+        
         // GET api/todos
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "todo1", "todo2" };
+            return all;
         }
 
         // GET api/todos/5
@@ -26,8 +33,10 @@ namespace todos.Controllers
 
         // POST api/todos
         [HttpPost]
-        public void Post([FromBody] string todo)
+        public ActionResult<IEnumerable<string>> Post([FromBody] string todo)
         {
+            all.Add(todo);
+            return all;
         }
 
         // PUT api/todos/5
