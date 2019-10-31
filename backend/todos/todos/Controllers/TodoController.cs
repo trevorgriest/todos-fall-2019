@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace todos.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/todos")]
     [ApiController]
     public class TodoController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace todos.Controllers
             "Finish my laser app",
             "Do things with kids"
         };
-        
+
         // GET api/todos
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

@@ -1,5 +1,8 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Todos from "./components/Todos";
+import apiActions from "./api/apiActions";
+import Home from "./components/Home";
 
 export default () => {
   pageBuild();
@@ -8,6 +11,8 @@ export default () => {
 function pageBuild() {
   header();
   footer();
+  navHome();
+  navTodos();
 }
 
 function header() {
@@ -18,4 +23,21 @@ function header() {
 function footer() {
   const footer = document.getElementById("footer");
   footer.innerHTML = Footer();
+}
+
+function navHome() {
+  const homeButton = document.querySelector(".nav__home");
+  homeButton.addEventListener("click", function() {
+    document.querySelector("#app").innerHTML = Home();
+  });
+}
+
+function navTodos() {
+  const toDosButton = document.querySelector(".nav__toDos");
+
+  toDosButton.addEventListener("click", function() {
+    apiActions.getRequest("https://localhost:5001/api/todos", toDos => {
+      document.querySelector("#app").innerHTML = Todos(toDos);
+    });
+  });
 }
