@@ -33,10 +33,10 @@ namespace todos.Controllers
 
         // POST api/todos
         [HttpPost]
-        public ActionResult<IEnumerable<string>> Post([FromBody] string todo)
+        public ActionResult<bool> Post([FromBody] string todo)
         {
             all.Add(todo);
-            return all;
+            return true;
         }
 
         // PUT api/todos/5
