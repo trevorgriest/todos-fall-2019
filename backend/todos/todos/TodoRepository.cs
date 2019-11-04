@@ -6,7 +6,7 @@ using todos.Models;
 
 namespace todos
 {
-    public class TodoRepository : Repository<Todo>, ITodoRepository
+    public class TodoRepository : Repository<Todo>, IRepository<Todo>
     {
         public TodoRepository(TodoContext context) : base(context)
         {

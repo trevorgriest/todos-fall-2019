@@ -18,9 +18,9 @@ namespace todos.Controllers
         //    "Do things with kids"
         //};
 
-        private ITodoRepository todoRepo;
+        private IRepository<Todo> todoRepo;
 
-        public TodoController(ITodoRepository todoRepo)
+        public TodoController(IRepository<Todo> todoRepo)
         {
             this.todoRepo = todoRepo;
         }
