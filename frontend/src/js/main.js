@@ -36,7 +36,7 @@ function navTodos() {
   const toDosButton = document.querySelector(".nav__todos");
 
   toDosButton.addEventListener("click", function() {
-    apiActions.getRequest("https://localhost:5001/api/todos", toDos => {
+    apiActions.getRequest("https://localhost:44327/api/todos", toDos => {
       document.querySelector("#app").innerHTML = Todos(toDos);
     });
   });
@@ -50,8 +50,10 @@ function navTodos() {
 
       console.log(toDo);
       apiActions.postRequest(
-        "https://localhost:5001/api/todos",
-        toDo,
+        "https://localhost:44327/api/todos",
+        {
+          name: toDo
+        },
         toDos => {
           console.log(toDos);
           document.querySelector("#app").innerHTML = Todos(toDos);

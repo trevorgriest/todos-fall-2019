@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using todos.Models;
 
 namespace todos.Controllers
 {
@@ -10,18 +11,25 @@ namespace todos.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
-        private static List<string> all = new List<string>()
+        //private static List<string> all = new List<string>()
+        //{
+        //    "Remodel Bathroom",
+        //    "Finish my laser app",
+        //    "Do things with kids"
+        //};
+
+        private ITodoRepository todoRepo;
+
+        public TodoController(ITodoRepository todoRepo)
         {
-            "Remodel Bathroom",
-            "Finish my laser app",
-            "Do things with kids"
-        };
+            this.todoRepo = todoRepo;
+        }
 
         // GET api/todos
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IEnumerable<Todo> Get()
         {
-            return all;
+            return todoRepo.GetAll();
         }
 
         // GET api/todos/5
@@ -33,10 +41,10 @@ namespace todos.Controllers
 
         // POST api/todos
         [HttpPost]
-        public ActionResult<bool> Post([FromBody] string todo)
+        public IEnumerable<Todo> Post([FromBody] Todo todo)
         {
-            all.Add(todo);
-            return true;
+            todoRepo.Create(todo);
+            return todoRepo.GetAll();
         }
 
         // PUT api/todos/5

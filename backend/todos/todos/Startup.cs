@@ -35,6 +35,10 @@ namespace todos
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<TodoContext>();
+            services.AddScoped<ITodoRepository, TodoRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
